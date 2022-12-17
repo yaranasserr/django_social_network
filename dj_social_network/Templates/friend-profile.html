@@ -1,0 +1,55 @@
+{%  extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{friend.username}}
+{% endblock title %}
+
+
+{% block navbar %}
+
+
+{%  include 'navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="row" style="margin-top:2%;">
+
+    <div class="col-md-3" style="margin-left:4%; text-align: center;">
+        <div class="card card-body" style="border-radius:25px;">
+            <img class="img-fluid img-thumbnail"  src="{{friend.profile_pic.url}}" >
+
+            <h3 >{{friend.first_name}} {{friend.last_name}}</h3>
+            <a href="#"><h4 >@{{friend.username}}</h4></a>
+            <h6>{{friend.get_num_posts}} Posts</h6>
+            <p>{{friend.bio}}</p>
+
+            <a href="/follow/{{friend.id}}"><button class="btn btn-success">Follow</button></a>
+            <a href="/unfollow/{{friend.id}}"><button class="btn btn-danger">Unfollow</button></a>
+
+        </div>
+    </div>
+
+
+
+    <div class="col-md-8" >
+        <div class="card card-body"style="border-radius:25px; min-height:100%;">
+
+            {% for post in object_list %}
+            <div class="card" style="margin: 2%;">
+                <div class="card-body">
+                    <p class="card-text">{{post.caption}}</p>
+                    <a href="#" class="card-link">{{post.date_created}}</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% include 'pagination.html' %}
+        </div>
+        <br>
+    </div>
+
+</div>
+
+{% endblock content %}

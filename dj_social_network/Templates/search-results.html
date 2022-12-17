@@ -1,0 +1,48 @@
+{%  extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+
+{% block navbar %}
+
+
+{%  include 'navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="row" style="margin-top:2%;">
+
+    <div class="col" >
+
+        <div class="card card-body"style="border-radius:25px;">
+
+
+            {% for user in object_list %}
+
+            <div class="card" style="margin: 2%;">
+
+                <div class="card-body row">
+                    <div class="col-md-2">
+                        <img src="{{user.profile_pic.url}}" style="max-width:100px; max-height:100px;">
+                    </div>
+                    <div class="col-md-10">
+                        <a href="/user/{{user.username}}" class="card-link"><h1>@{{user.username}}</h1></a>
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+        {%  include 'pagination.html' %}
+    </div>
+
+</div>
+
+{% endblock content %}

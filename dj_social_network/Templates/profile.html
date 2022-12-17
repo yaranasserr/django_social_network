@@ -1,0 +1,58 @@
+{%  extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+My Profile
+{% endblock title %}
+
+
+{% block navbar %}
+
+
+{%  include 'navbar.html' %}
+
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="row" style="margin-top:2%;">
+
+    <div class="col-md-3" style="margin-left:4%; text-align: center;">
+        <div class="card card-body" style="border-radius:25px;">
+            <img class="img-fluid img-thumbnail" src="{{request.user.profile_pic.url}}">
+
+
+            <h3>{{request.user.first_name}} {{request.user.last_name}}</h3>
+            <a href="#"><h4>@{{request.user.username}}</h4></a>
+             <h6>{{request.user.get_num_posts}} Posts</h6>
+            <p>{{request.user.bio}}  </p>
+
+            <a href="{%url 'account-settings' %}"><h6>Account Settings</h6></a>
+        </div>
+    </div>
+<!--{% for post in object_list %}-->
+<!--    <h6>{{post.caption}}</h6>-->
+<!--    <h6>{{post.date_created}}</h6>-->
+<!--{% endfor %}-->
+
+
+
+      <div class="col-md-8" >
+            <div class="card card-body"style="border-radius:25px; min-height:100%;">
+                <a href="{% url 'new_post'%}" style="margin-left: 2%;"> <h1> <i class="fa fa-pencil fa-lg"></i> New Post...</h1> </a>
+                    {% for post in object_list %}
+                    <div class="card" style="margin: 2%;">
+                        <div class="card-body">
+                            <p class="card-text">{{post.caption}}</p>
+                            <a href="#" class="card-link">{{post.date_created}}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {%include 'pagination.html'%}
+            </div>
+            <br>
+        </div>
+
+</div>
+
+{% endblock content %}

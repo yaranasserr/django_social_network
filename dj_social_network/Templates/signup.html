@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+{% load crispy_forms_tags%}
+{% load static %}
+    {% block title %}
+    Signup
+    {% endblock title %}
+
+    {% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="row" style="margin-top:3%;">
+        <div class="col-md-4 col-xs-12" >
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Sign up</button>
+
+            </form>
+            <a href="{% url 'login' %}">Already a user ? , Log in</a>
+        </div>
+
+        <div class="col-md-8 col-xs-12">
+            <img class="img-fluid" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" >
+
+        </div>
+    </div>
+</div>
+
+
+    {% endblock content %}
