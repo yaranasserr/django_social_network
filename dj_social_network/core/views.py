@@ -32,7 +32,7 @@ def login_page(request):
     else:
         if request.method == "GET":
             return render(request,'login.html')
-        elif request.method == "POST":
+        elif request.method == "POST": # user is sending data
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(username=username,password=password)
